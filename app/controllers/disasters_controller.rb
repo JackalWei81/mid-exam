@@ -3,7 +3,7 @@ class DisastersController < ApplicationController
   before_action :find_disaster, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @disasters = Disaster.all
+    @disasters = Disaster.page( params[:page] ).per(10)
   end
 
   def show
@@ -37,7 +37,7 @@ class DisastersController < ApplicationController
 
   def destroy
     @disaster.destroy
-    redirect_to disasters_path
+    redirect_to disasters_path(:page => params[:page])
   end
 
 
@@ -52,7 +52,6 @@ class DisastersController < ApplicationController
     @disaster = Disaster.find(params[:id])
   end
 
-  def post_time
-  end
+
 
 end

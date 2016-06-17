@@ -17,6 +17,8 @@ gem 'coffee-rails', '~> 4.1.0'
 #bootstrap
 gem 'bootstrap-sass', '~>3.3.4'
 
+# pages
+gem 'kaminari'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
