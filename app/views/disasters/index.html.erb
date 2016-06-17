@@ -1,0 +1,25 @@
+<h1><%= link_to "Disasters List", disasters_path  %></h1>
+
+
+
+<p>
+  <%= link_to "New Disaster", new_disaster_path, :class => "btn btn-primary" %>
+</p>
+<table class="table">
+  <% @disasters.each do |e| %>
+  <tr>
+    <td>
+      <strong><%= link_to "#{e.name}", disaster_path(e), :class => "text-info"%></strong>
+    </td>
+
+    <td>
+      <%= link_to "Edit", edit_disaster_path(e), :class => "btn btn-warning pull-right" %>
+    </td>
+
+    <td>
+      <%= link_to "Delete", disaster_path(e, :page => params[:page]), :method => :delete, :data => {:confirm => "Are you sure ?"}, :class => "btn btn-danger pull-right" %>
+    </td>
+
+  </tr>
+  <% end %>
+</table>

@@ -1,0 +1,6 @@
+<%= form_for @disaster, :url => disasters_path, :class => "form" do |f| %>
+
+  <%= render :partial => "form" , :locals => {:f => f} %>
+
+  <%= f.submit "Create", :class => "btn btn-primary" %>
+<% end %>

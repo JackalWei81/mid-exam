@@ -1,0 +1,6 @@
+<%= form_for @disaster, :url => disaster_path(@disaster), :method => :patch, :class => "form" do |f| %>
+
+  <%= render :partial => "form" , :locals => {:f => f} %>
+
+  <%= f.submit "Update", :class => "btn btn-primary" %>
+<% end %>
