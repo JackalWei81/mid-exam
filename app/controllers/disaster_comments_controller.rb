@@ -1,6 +1,7 @@
 class DisasterCommentsController < ApplicationController
 
   before_action :set_disaster
+  before_action :authenticate_user!
 
 
   def edit

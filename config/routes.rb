@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+
+
   resources :disasters do
     resources :comments, :controller => "disaster_comments"
   end

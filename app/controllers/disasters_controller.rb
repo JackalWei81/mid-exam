@@ -2,6 +2,8 @@ class DisastersController < ApplicationController
 
   before_action :find_disaster, :only => [:show, :edit, :update, :destroy]
 
+  before_action :authenticate_user! , :except => [:index, :show]
+
   def index
     @disasters = Disaster.page( params[:page] ).per(10)
   end
