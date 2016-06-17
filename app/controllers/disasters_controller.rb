@@ -14,6 +14,10 @@ class DisastersController < ApplicationController
   end
 
   def edit
+    if "#{current_user.id}" != @disaster.user_id
+      flash[:alert] = "you are not poster!!"
+      redirect_to disasters_path
+    end
   end
 
   def update
@@ -33,6 +37,7 @@ class DisastersController < ApplicationController
     @disaster = Disaster.new(set_disaster_params)
     if @disaster.save
       flash[:notice] = "New Success!!"
+      @disaster.update(:user_id => current_user.id)
       redirect_to disasters_path
     else
       render :action => :new
@@ -40,8 +45,14 @@ class DisastersController < ApplicationController
   end
 
   def destroy
-    @disaster.destroy
-    redirect_to disasters_path(:page => params[:page])
+    if "#{current_user.id}" == @disaster.user_id
+      @disaster.destroy
+      flash[:alert] = "successfully deleted!!"
+      redirect_to disasters_path(:page => params[:page])
+    else
+      flash[:alert] = "you are not poster!!"
+      redirect_to disasters_path
+    end
   end
 
 

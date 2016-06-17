@@ -1,4 +1,4 @@
 class Category < ActiveRecord::Base
 
-  has_many :disasters
+  has_many :disasters, :dependent => :destroy
 end

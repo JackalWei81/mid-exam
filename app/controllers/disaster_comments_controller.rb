@@ -6,6 +6,10 @@ class DisasterCommentsController < ApplicationController
 
   def edit
     @comment = @disaster.comments.find(params[:id])
+    if "#{current_user.id}" != @comment.user_id
+      flash[:alert] = "you are not poster!!"
+      redirect_to disaster_path(@disaster)
+    end
   end
 
   def update
@@ -22,14 +26,19 @@ class DisasterCommentsController < ApplicationController
   def create
     @comment = @disaster.comments.build(comment_params)
     flash[:notice] = "New Success!!" if @comment.save
+    @comment.update(:user_id => current_user.id)
     redirect_to disaster_path(@disaster)
   end
 
   def destroy
     @comment = @disaster.comments.find(params[:id])
-    @comment.destroy
-    flash[:alert] = "successfully deleted!!"
-    redirect_to disaster_path(@disaster)
+    if "#{current_user.id}" == @comment.user_id
+      @comment.destroy
+      flash[:alert] = "successfully deleted!!"
+    else
+      flash[:alert] = "you are not poster!!"
+    end
+      redirect_to disaster_path(@disaster)
   end
 
 
