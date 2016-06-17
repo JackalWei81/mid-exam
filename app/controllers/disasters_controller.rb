@@ -7,6 +7,8 @@ class DisastersController < ApplicationController
   end
 
   def show
+    @comments = @disaster.comments.page( params[:page] ).per(7)
+    @comment = Comment.new
   end
 
   def edit

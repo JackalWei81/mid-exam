@@ -7,6 +7,44 @@
 <h3>  <%= @disaster.description %></h3>
 <hr/>
 
+<h5>Comments</h5>
 
-
+<table class="table">
+  <% @comments.each do |e| %>
+    <tr>
+      <td>
+        <p>  <%= e.name  %> </p>
+      </td>
+      <td>
+        <%= link_to "Edit Comments", edit_disaster_comment_path(@disaster,e), :class => "btn btn-warning" %>
+      </td>
+      <td>
+        <%= link_to "Delete Comments", disaster_comment_path(@disaster,e), :method => :delete, :data => {:confirm => "Are you sure?"},  :class => "btn btn-danger" %>
+      </td>
+      <td>
+        <p class="pull-right"><%= e.updated_at %></p>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<%= paginate @comments %>
 <%= link_to "Back To Index", disasters_path %>
+
+<% if @comment.errors.any? %>
+      <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+<% end %>
+
+<%= form_for @comment, :url => disaster_comments_path(@disaster),  :class => "form" do |f| %>
+
+  <div class="form-group ">
+  <%= f.label :name, "content" %>
+  <%= f.text_field :name, :class => "form-control"  %>
+  </div>
+
+  <%= f.submit "Save", :class => "btn btn-primary" %>
+  <%= link_to "Cancel", :back, :class=>"btn btn-default" %>
+<% end %>

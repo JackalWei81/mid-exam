@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :disasters do
-    resources :comments, :controllers => "disaster_comments"
+    resources :comments, :controller => "disaster_comments"
   end
 
 
