@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :disasters, :dependent => :destroy
+
+  def short_name
+    self.email.split("@").first
+  end
 end

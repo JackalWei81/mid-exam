@@ -17,7 +17,7 @@
       <div class="alert alert-danger" role="alert"><%=flash[:alert] %> </div>
     <% end %>
 
-
+    <h2> <%= current_user.short_name %></h2>
     <% if current_user %>
       <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
       <%= link_to('修改密碼', edit_registration_path(:user)) %>
