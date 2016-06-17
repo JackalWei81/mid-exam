@@ -1,0 +1,2 @@
+class DisasterCommentsController < ApplicationController
+end

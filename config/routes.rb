@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :disasters
+  resources :disasters do
+    resources :comments, :controllers => "disaster_comments"
+  end
 
 
   root :to => "disasters#index"
