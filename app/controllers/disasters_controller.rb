@@ -45,11 +45,14 @@ class DisastersController < ApplicationController
   protected
 
   def set_disaster_params
-    params.require(:disaster).permit(:name, :description)
+    params.require(:disaster).permit(:name, :description, :category_id)
   end
 
   def find_disaster
     @disaster = Disaster.find(params[:id])
+  end
+
+  def post_time
   end
 
 end

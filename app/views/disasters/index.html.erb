@@ -13,6 +13,14 @@
     </td>
 
     <td>
+        <%= simple_format e.category_name %>
+    </td>
+
+    <td>
+        <%= e.created_at %>
+    </td>
+
+    <td>
       <%= link_to "Edit", edit_disaster_path(e), :class => "btn btn-warning pull-right" %>
     </td>
 
