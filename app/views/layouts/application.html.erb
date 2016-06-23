@@ -19,7 +19,7 @@
 
 
     <% if current_user %>
-      <h2> <%= current_user.short_name if current_user %></h2>
+      <h2> <%= current_user.short_name%></h2>
       <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
       <%= link_to('修改密碼', edit_registration_path(:user)) %>
     <% else %>
