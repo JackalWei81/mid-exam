@@ -15,12 +15,14 @@
       <td>
         <p>  <%= e.name  %> </p>
       </td>
+      <% if current_user == e.user_id  %>
       <td>
-        <%= link_to "Edit Comments", edit_disaster_comment_path(@disaster,e), :class => "btn btn-warning" %>
+        <%= link_to "Edit", edit_disaster_comment_path(@disaster,e), :class => "btn btn-warning" %>
       </td>
       <td>
-        <%= link_to "Delete Comments", disaster_comment_path(@disaster,e), :method => :delete, :data => {:confirm => "Are you sure?"},  :class => "btn btn-danger" %>
+        <%= link_to "Delete", disaster_comment_path(@disaster,e), :method => :delete, :data => {:confirm => "Are you sure?"},  :class => "btn btn-danger" %>
       </td>
+      <% end %>
       <td>
         <p class="pull-right"><%= e.updated_at %></p>
       </td>

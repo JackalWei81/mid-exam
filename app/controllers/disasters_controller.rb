@@ -14,7 +14,7 @@ class DisastersController < ApplicationController
   end
 
   def edit
-    if "#{current_user.id}" != @disaster.user_id
+    unless current_user == @disaster.user_id
       flash[:alert] = "you are not poster!!"
       redirect_to disasters_path
     end
@@ -35,9 +35,9 @@ class DisastersController < ApplicationController
 
   def create
     @disaster = Disaster.new(set_disaster_params)
+    @disaster.user_id = current_user
     if @disaster.save
       flash[:notice] = "New Success!!"
-      @disaster.update(:user_id => current_user.id)
       redirect_to disasters_path
     else
       render :action => :new
@@ -45,7 +45,7 @@ class DisastersController < ApplicationController
   end
 
   def destroy
-    if "#{current_user.id}" == @disaster.user_id
+    if current_user == @disaster.user_id
       @disaster.destroy
       flash[:alert] = "successfully deleted!!"
       redirect_to disasters_path(:page => params[:page])

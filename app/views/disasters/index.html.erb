@@ -23,6 +23,8 @@
         <%= e.created_at %>
     </td>
 
+    <!-- 不是作者，無法做編輯和刪除 -->
+    <% if current_user == e.user_id %>
     <td>
       <%= link_to "Edit", edit_disaster_path(e), :class => "btn btn-warning pull-right" %>
     </td>
@@ -30,6 +32,7 @@
     <td>
       <%= link_to "Delete", disaster_path(e, :page => params[:page]), :method => :delete, :data => {:confirm => "Are you sure ?"}, :class => "btn btn-danger pull-right" %>
     </td>
+    <% end %>
 
   </tr>
   <% end %>
